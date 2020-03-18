@@ -36,7 +36,7 @@ resource "azurerm_key_vault" "vault" {
     tenant_id = var.tenant_id
 
     #object_id = "${var.object_id}"
-    object_id = data.azurerm_client_config.current.service_principal_object_id
+    object_id = data.azurerm_client_config.current.object_id
 
     key_permissions = [
       "get",
