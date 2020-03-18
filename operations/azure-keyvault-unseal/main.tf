@@ -157,7 +157,6 @@ resource "azurerm_network_interface" "tf_nic" {
   name                      = "nic-${random_id.keyvault.hex}"
   location                  = var.location
   resource_group_name       = azurerm_resource_group.vault.name
-  network_security_group_id = azurerm_network_security_group.tf_nsg.id
 
   ip_configuration {
     name                          = "nic-${random_id.keyvault.hex}"
@@ -169,6 +168,11 @@ resource "azurerm_network_interface" "tf_nic" {
   tags = {
     environment = "${var.environment}-${random_id.keyvault.hex}"
   }
+}
+
+resource "azurerm_network_interface_security_group_association" "tf_nic_nsg" {
+  network_interface_id      = azurerm_network_interface.tf_nic.id
+  network_security_group_id = azurerm_network_security_group.tf_nsg.id
 }
 
 resource "random_id" "tf_random_id" {
