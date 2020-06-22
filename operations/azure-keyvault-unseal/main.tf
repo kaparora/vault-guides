@@ -218,10 +218,14 @@ resource "azurerm_virtual_machine" "tf_vm" {
   location              = var.location
   resource_group_name   = azurerm_resource_group.vault.name
   network_interface_ids = ["${azurerm_network_interface.tf_nic.id}"]
-  vm_size               = "Standard_DS1_v2"
+  vm_size               = "Standard_D1_v2"
 
   identity {
     type = "SystemAssigned"
+  }
+  
+  tags = {
+    environment = "staging"
   }
 
   storage_os_disk {
