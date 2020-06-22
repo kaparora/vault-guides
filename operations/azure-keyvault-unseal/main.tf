@@ -223,10 +223,6 @@ resource "azurerm_virtual_machine" "tf_vm" {
   identity {
     type = "SystemAssigned"
   }
-  
-  tags = {
-    environment = "staging"
-  }
 
   storage_os_disk {
     name              = "OsDisk"
